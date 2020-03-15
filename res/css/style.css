@@ -1,0 +1,96 @@
+.nav-card {
+	padding-left: 4px;
+	padding-right: 4px;
+}
+
+.nav-tab {
+	padding: 0px;
+}
+
+.nav-list-item {
+	border-left-width: 0px;
+	border-right-width: 0px;
+}
+
+.nav-list-item:first-child {
+	border-top-left-radius: 0rem;
+	border-top-right-radius: 0rem;
+}
+
+.nav-list-item:last-child {
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+	border-bottom-width: 0px;
+}
+
+th:first-child {
+	border-top-left-radius: 0.25rem;
+}
+
+th:last-child {
+	border-top-right-radius: 0.25rem;
+}
+
+.info-panel {
+	display: none;
+}
+
+.display-panel {
+	overflow-y: auto;
+	margin-top: 4px;
+	margin-bottom: 4px;
+}
+
+.info-side {
+	flex-flow: column;
+	display: flex;
+	padding-left: 8px;
+	padding-right: 8px;
+}
+
+.close-button {
+	float: right;
+	background: none;
+	border: none;
+}
+
+.display-table {
+	margin-bottom: 0rem;
+}
+
+.field-alert {
+	margin-bottom: 0px;
+	border-radius: 0px;
+}
+
+.field-alert:first-child {
+	border-top-left-radius: 0.25rem;
+	border-top-right-radius: 0.25rem;
+	margin-top: 4px;
+}
+
+.field-alert:last-child {
+	border-bottom-left-radius: 0.25rem;
+	border-bottom-right-radius: 0.25rem;
+	margin-bottom: 4px;
+}
+
+.info-hint {
+	width: 128px;
+	text-overflow: ellipsis;
+	text-align: right;
+}
+
+.left-card {
+	border-top-left-radius: 0px;
+	border-bottom-left-radius: 0px;
+}
+
+.left-accordion {
+	padding-left: 0px;
+}
+
+.disabled-link {
+	background-color: gainsboro;
+	user-select: none;
+}
