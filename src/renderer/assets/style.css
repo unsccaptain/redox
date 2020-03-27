@@ -1,0 +1,120 @@
+th:first-child {
+	border-top-left-radius: 0.25rem;
+}
+
+th:last-child {
+	border-top-right-radius: 0.25rem;
+}
+
+.display-panel {
+	margin-top: 0px;
+	margin-bottom: 0px;
+	padding-right: 1px;
+	/* 抵消table的border，不然会有滚动条出现 */
+}
+
+.right-panel {
+	flex-flow: column;
+	display: flex;
+	padding-left: 0px;
+	padding-right: 0px;
+	background-color: rgba(246, 246, 246, 1);
+}
+
+.client-panel {
+	background-color: rgba(247, 247, 247, 1);
+}
+
+.display-table {
+	margin-bottom: 0rem;
+}
+
+.field-alert {
+	margin-bottom: 0px;
+	border-radius: 0px;
+}
+
+.field-alert:first-child {
+	margin-top: 0px;
+}
+
+.field-alert:last-child {
+	margin-bottom: 0px;
+}
+
+.info-title {
+	width: 128px;
+	border-radius: 0rem;
+	border: 0px;
+	height: 32px;
+	margin-top: 4px;
+	padding: 8px;
+}
+
+.info-content {
+	border-radius: 0rem;
+	border: 0px;
+	background-color: rgba(247, 247, 247, 1);
+	height: 32px;
+	margin-top: 4px;
+	padding: 8px;
+}
+
+.display-table td:not(last-child) {
+	border-right: 1px solid #dee2e6;
+}
+
+.display-table th:not(last-child) {
+	border-right: 1px solid #dee2e6;
+}
+
+.display-table td {
+	border-bottom: 1px solid #dee2e6;
+}
+
+.disabled-link {
+	background-color: gainsboro;
+	user-select: none;
+}
+
+.attr-cell {
+	padding: 0px;
+	border: 0px;
+	height: 16px;
+}
+
+.attr-check {
+	margin: 6px;
+}
+
+.tr-focus {
+	background-color: #e0e0e0
+}
+
+::-webkit-scrollbar {
+	/*滚动条整体样式*/
+	width: 6px;
+	/*高宽分别对应横竖滚动条的尺寸*/
+	height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+	/*滚动条里面小方块*/
+	border-radius: 0px;
+	background-color: rgba(133, 133, 133, 0.63);
+	/* background-image: -webkit-linear-gradient(45deg,
+			rgba(255, 255, 255, 0.2) 25%,
+			transparent 25%,
+			transparent 50%,
+			rgba(255, 255, 255, 0.2) 50%,
+			rgba(255, 255, 255, 0.2) 75%,
+			transparent 75%,
+			transparent); */
+}
+
+::-webkit-scrollbar-track {
+	/*滚动条里面轨道*/
+	box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+	background: #ededed;
+	/* border-radius: 10px; */
+}

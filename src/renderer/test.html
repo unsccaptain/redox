@@ -1,0 +1,122 @@
+<!doctype html>
+<html class="h-100">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Redox</title>
+	<!-- 引入样式 -->
+	<link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+	<!-- 引入组件 -->
+	<script src="../../node_modules/vue/dist/vue.min.js"></script>
+	<script src="../../node_modules/jquery/dist/jquery.js"></script>
+	<script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+</head>
+
+<!-- FIXME:iview会把全局字体拉到14px，不知道怎么改 -->
+
+<body class='h-100' style="font-size: 12px;">
+
+	<div id="app" class='h-100'>
+		{{ aaa }}
+		<rand-scroll :height="400" :max="100" :per="10" :width="10" v-on:scroll="handle_scroll"></rand-scroll>
+	</div>
+	<style>
+		.rand-scroll {
+			width: 12px;
+			background-color: gray;
+		}
+
+		.rand-scroll-thumb {
+			width: 12px;
+			background-color: darkblue;
+		}
+
+		.rand-scroll-thumb:hover {
+			width: 12px;
+			background-color: blanchedalmond;
+		}
+	</style>
+	<script>
+		Vue.component('rand-scroll', {
+			data: function () {
+				return {
+					min_height: 0,
+					step: 0,
+					scroll_state: 0,
+					y: 0,
+				}
+			},
+			methods: {
+				scroll_start: function (event) {
+					if (event.button == 0) {
+						this.scroll_state = 1;
+						this.y = event.clientY;
+					}
+				},
+				scroll_move: function (event) {
+					if (this.scroll_state) {
+						let new_top = $(event.currentTarget).position().top + event.clientY - this.y;
+
+						if (new_top < 0)
+							new_top = 0;
+
+						if (new_top + $(event.currentTarget).height() > this.height)
+							new_top = this.height - $(event.currentTarget).height()
+
+						this.y = event.clientY;
+						$(event.currentTarget).css("top", new_top + 'px');
+
+						//** 向外传递当前的Value */
+						let event_data = {
+							value: new_top / this.height * this.max
+						}
+						this.$emit("scroll", event_data);
+					}
+				},
+				scroll_end: function (event) {
+					this.scroll_state = 0;
+				},
+				scroll_out: function (event) {
+					this.scroll_state = 0;
+				}
+			},
+			template: `
+			<div class="rand-scroll" v-bind:style="{height:height+'px',position:'absolute'}">
+    			<div class="rand-scroll-track"></div>
+				<div class="rand-scroll-thumb" v-on:mousedown="scroll_start" 
+				v-on:mousemove="scroll_move"
+				v-on:mouseup="scroll_end"
+				v-on:mouseout="scroll_out"
+				v-bind:style="{height:thumb_height+'px',position:'absolute'}"></div>
+			  </div>`,
+			computed: {
+				thumb_height: function () {
+					let height = this.height * this.per / this.max;
+					if (height < this.min_height) {
+						height = min_height;
+					}
+					return height;
+				}
+			},
+			props: ["height", "width",
+				"max", "per"
+			],
+		})
+
+		var vue = new Vue({
+			el: '#app',
+			data: {
+				aaa: "aaa"
+			},
+			methods: {
+				handle_scroll: function (event) {
+					console.log(event.value)
+				},
+			}
+		})
+	</script>
+
+</body>
+
+</html>

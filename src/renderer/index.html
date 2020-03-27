@@ -1,0 +1,60 @@
+<!doctype html>
+<html class="h-100">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Redox</title>
+	<!-- 引入样式 -->
+	<link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+	<!-- 引入组件 -->
+	<script src="../../node_modules/popper.js/dist/popper.min.js"></script>
+	<!-- 处理node和jquery的名称冲突 -->
+	<!-- https://www.cnblogs.com/suRimn/p/9475597.html -->
+	<script>
+		window.$ = window.jQuery = require('../../node_modules/jquery/dist/jquery.js')
+		require('../../node_modules/bootstrap/dist/js/bootstrap.min.js')
+		const fs = require('fs')
+		const path = require('path')
+		const process = require('process');
+		const cp = require('child_process')
+		const {
+			remote,
+			ipcRenderer
+		} = require('electron')
+		const {
+			Menu,
+			MenuItem
+		} = remote
+		$(function () {
+			$('[data-toggle="popover"]').popover()
+		})
+
+		/** 获取全局分析session */
+		let session = remote.getGlobal("session");
+
+		window.onload = function () {
+			if (document.getElementById('drag') != undefined) {
+				document.getElementById('drag').addEventListener('drop', (event) => {
+					file_name = event.dataTransfer.files[0].path;
+					console.log(file_name);
+					ipcRenderer.send("analysis-create", file_name);
+				})
+
+				document.getElementById('drag').addEventListener('dragover', (e) => {
+					e.preventDefault();
+				})
+			}
+		}
+	</script>
+</head>
+
+<!-- FIXME:iview会把全局字体拉到14px，不知道怎么改 -->
+
+<body class='h-100' style="font-size: 12px;">
+	<div id="app" class='h-100'>
+		<blank-panel></blank-panel>
+		<main-frame></main-frame>
+	</div>
+</body>
+
+</html>
